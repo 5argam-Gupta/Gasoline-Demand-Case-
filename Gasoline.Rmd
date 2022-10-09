@@ -1,0 +1,126 @@
+---
+title: "hw4"
+author: "Sargam Gupta, Grace Jiang, Dylan Kahn, Xiangjing Lai, Jiaqi Zhao "
+date: '2022-07-27'
+output: html_document
+---
+
+```{r}
+library("readxl")
+gas <- read_excel("GasolineDemandData.xlsx", range = "A1:D5002", col_names = TRUE)
+
+gas
+
+
+```
+
+#1
+```{r}
+mean <- mean(gas$gas)
+sd <- sd(gas$gas)
+n <- length(gas$gas)
+mean
+sd
+n
+```
+
+```{r}
+se <- sd/sqrt(n)
+lower.end <- mean - 2*se
+upper.end <- mean + 2*se
+se
+lower.end
+upper.end
+```
+
+#2a
+```{r}
+gas_urban <- gas$gas[gas$urban == "YES"]
+mean_urban <- mean(gas_urban)
+sd_urban <- sd(gas_urban)
+n_urban <- length(gas_urban)
+mean_urban
+sd_urban
+n_urban
+```
+
+```{r}
+se_urban <- sd_urban/sqrt(n_urban)
+lower.end_urban <- mean_urban - 2*se_urban
+upper.end_urban <- mean_urban + 2*se_urban
+se_urban
+lower.end_urban
+upper.end_urban
+```
+
+#2b
+```{r}
+gas_young <- gas$gas[gas$youngsingle == "YES"]
+mean_young <- mean(gas_young)
+sd_young <- sd(gas_young)
+n_young <- length(gas_young)
+mean_young
+sd_young
+n_young
+```
+
+```{r}
+se_young <- sd_young/sqrt(n_young)
+lower.end_young <- mean_young - 2*se_young
+upper.end_young <- mean_young + 2*se_young
+se_young
+lower.end_young
+upper.end_young
+```
+```{r}
+# Rural data
+gas_rural <- gas$gas[gas$urban == "NO"]
+mean_rural <- mean(gas_rural)
+sd_rural <- sd(gas_rural)
+n_rural <- length(gas_rural)
+mean_rural
+sd_rural
+n_rural
+
+
+```
+```{r}
+se_rural <- sd_rural/sqrt(n_rural)
+lower.end_rural <- mean_rural - 2*se_rural
+upper.end_rural <- mean_rural + 2*se_rural
+se_rural
+lower.end_rural
+upper.end_rural
+```
+
+
+```{r}
+
+# Not young and single data
+gas_nyoung <- gas$gas[gas$youngsingle == "NO"]
+mean_nyoung <- mean(gas_nyoung)
+sd_nyoung <- sd(gas_nyoung)
+n_nyoung <- length(gas_nyoung)
+mean_nyoung
+sd_nyoung
+n_nyoung
+```
+```{r}
+se_nyoung <- sd_nyoung/sqrt(n_nyoung)
+lower.end_nyoung <- mean_nyoung - 2*se_nyoung
+upper.end_nyoung <- mean_nyoung + 2*se_nyoung
+se_nyoung
+lower.end_nyoung
+upper.end_nyoung
+
+```
+
+```{r}
+# Percentage of sample size that is both urban & young and single
+
+q5 = length(gas$gas[gas$urban == "YES" & gas$youngsingle == "YES"])
+q5
+q5/n
+
+n
+```
